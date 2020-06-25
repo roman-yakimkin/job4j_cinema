@@ -11,6 +11,8 @@
 config/database.yml
 log/*
 tmp/*
+out/
+out/*
 
 # java specific
 *.class
