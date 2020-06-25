@@ -86,7 +86,8 @@ public class DBCinema implements Cinema {
     }
 
     @Override
-    public void bookSeat(int row, int seat, String orderName, String orderPhone) {
+    public String bookSeat(int row, int seat, String orderName, String orderPhone) {
+        String result = "ok";
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("INSERT INTO seats(\"row\", seat, order_name, order_phone) VALUES (?, ?, ?, ?)")
         ) {
@@ -96,8 +97,10 @@ public class DBCinema implements Cinema {
             ps.setString(4, orderPhone);
             ps.execute();
         } catch (Exception e) {
+            result = e.getMessage();
             e.printStackTrace();
         }
+        return result;
     }
 
     @Override

@@ -45,6 +45,16 @@
             });
     }
 
+    function outputDataResult(msgText) {
+        $("#dlg-message")
+            .css("display", "block")
+            .html(msgText);
+        setTimeout(function(){
+            $("#dlg-message")
+                .css("display", "none");
+        }, 5000);
+    }
+
     $(document).ready(function() {
         var row = 0, seat = 0;
         let dialog, form;
@@ -77,13 +87,9 @@
                                 dialog.dialog("close");
 
                             } else if (data.result === "seat_is_busy") {
-                                $("#dlg-message")
-                                    .css("display", "block")
-                                    .html("Место уже занято");
-                                setTimeout(function(){
-                                    $("#dlg-message")
-                                        .css("display", "none");
-                                }, 2000);
+                                outputDataResult("Место уже занято");
+                            } else {
+                                outputDataResult(data.result);
                             }
                         },
                         error: function(jqXhr, textStatus, errorThrown) {

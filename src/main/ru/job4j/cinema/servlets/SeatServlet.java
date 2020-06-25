@@ -57,8 +57,8 @@ public class SeatServlet extends HttpServlet {
             Map<String, String> result = Map.of("result", "seat_is_busy");
             synchronized (this) {
                 if (DBCinema.instOf().isSeatFree(row, seat)) {
-                    DBCinema.instOf().bookSeat(row, seat, orderName, orderPhone);
-                    result = Map.of("result", "ok");
+                    String seated = DBCinema.instOf().bookSeat(row, seat, orderName, orderPhone);
+                    result = Map.of("result", seated);
                 }
             }
             resp.getWriter().write(JSONObject.toJSONString(result));

@@ -15,6 +15,6 @@ public interface Cinema {
     public Map<String, Boolean> getSeatInfo();
     public void cleanOrder(int row, int seat);
     public void cleanOrders();
-    public void bookSeat(int row, int seat, String orderName, String orderPhone);
+    public String bookSeat(int row, int seat, String orderName, String orderPhone);
     public boolean isSeatFree(int row, int seat);
 }
